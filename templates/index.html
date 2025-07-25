@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lyric Frame</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="lyrics-frame">
+    <!-- Song info display removed to avoid fallback errors -->
+    <div class="lyrics-stack">
+      <p class="prev-line faded" id="prev2"></p>
+      <p class="prev-line faded" id="prev1"></p>
+      <h2 class="synced-line glowing" id="lyric">{{ current_lyric }}</h2>
+      <p class="next-line upcoming" id="next"></p>
+    </div>
+    <!-- <pre class="lyrics">{{ lyrics }}</pre> -->
+  </div>
+<script>
+  function fetchLyric() {
+    fetch('/current_line')
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('lyric').textContent = data.line;
+        document.getElementById('prev1').textContent = data.prev1;
+        document.getElementById('prev2').textContent = data.prev2;
+        document.getElementById('next').textContent = data.next;
+      });
+  }
+
+  setInterval(fetchLyric, 1000);
+</script>
+</body>
+</html>

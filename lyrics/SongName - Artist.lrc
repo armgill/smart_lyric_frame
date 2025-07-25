@@ -1,0 +1,10 @@
+def load_lrc(filepath):
+    lyrics = []
+    with open(filepath, 'r') as f:
+        for line in f:
+            if line.startswith('['):
+                timestamp, text = line.split(']', 1)
+                minutes, seconds = timestamp[1:].split(':')
+                ms = int(float(minutes) * 60000 + float(seconds) * 1000)
+                lyrics.append((ms, text.strip()))
+    return lyrics
