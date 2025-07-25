@@ -78,7 +78,7 @@ smart_lyric_frame/
 ├── lyrics/
 │   └── sample.lrc
 └── images/
-    └── concept_glass_lyrics.png
+    └── concept.png
 ```
 
 ---
